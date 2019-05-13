@@ -18,12 +18,12 @@ class Main extends \Controller
 
     public function loop()
     {
-        $appProcess = $this->app->process;
+        $process = process();
 
         $jobBuilder = \std\queue\models\Job::where('instance', $this->instance)->where('running', false)->orderBy('priority', 'DESC')->orderBy('id', 'ASC');
 
         while (true) {
-            if ($appProcess->handleIteration(100)) {
+            if (true === $process->handleIteration(100)) {
                 break;
             }
 
